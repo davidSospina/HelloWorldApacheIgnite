@@ -35,36 +35,18 @@ public class IgniteHelloWorld {
         // Classes of custom Java logic will be transferred over the wire from this app.
         cfg.setPeerClassLoadingEnabled(true);
 
+        // Node`s Ips
         Collection<String> ips = new ArrayList<>();
         ips.add("192.168.1.76");
         ips.add("192.168.1.75");
+        
         // Setting up an IP Finder to ensure the client can locate the servers.
         TcpDiscoveryMulticastIpFinder ipFinder = new TcpDiscoveryMulticastIpFinder();
         ipFinder.setAddresses(ips);
         cfg.setDiscoverySpi(new TcpDiscoverySpi().setIpFinder(ipFinder));
 
-
-
-//        TcpDiscoverySpi spi = new TcpDiscoverySpi();
-//
-//        TcpDiscoveryVmIpFinder ipFinder = new TcpDiscoveryVmIpFinder();
-//
-//        // Set initial IP addresses.
-//        // Note that you can optionally specify a port or a port range.
-//        ipFinder.setAddresses(Arrays.asList("192.168.1.74", "192.168.1.70"));
-//
-//        spi.setIpFinder(ipFinder);
-//
-//        IgniteConfiguration cfg = new IgniteConfiguration();
-//
-//        // Override default discovery SPI.
-//        cfg.setDiscoverySpi(spi);
-
-//        // Start Ignite node.
+        // Start Ignite node.
         Ignite ignite = Ignition.start(cfg);
-
-        // Starting the node
-//        Ignite ignite = Ignition.start(cfg);
 
         // Create an IgniteCache and put some values in it.
         IgniteCache<Integer, String> cache = ignite.getOrCreateCache("myCache");
