@@ -54,11 +54,14 @@ public class IgniteSql {
         cache.query(new SqlFieldsQuery(
                 "CREATE TABLE persona ( id INT PRIMARY KEY, nombre VARCHAR(20));")).getAll();
         
+        /// Almacenando valores
         SqlFieldsQuery qry = new SqlFieldsQuery(
             "insert into persona (id, nombre) values (?, ?)");
 
         cache.query(qry.setArgs(1,"Andres"));
         cache.query(qry.setArgs(2,"David"));
+//        cache.query(qry.setArgs(3,"Nombre3"));
+//        cache.query(qry.setArgs(4,"Nombre4"));
         
         System.out.println(">> Created the cache and values.");
 
@@ -97,7 +100,7 @@ public class IgniteSql {
 
             IgniteCache<Integer, String> cache = ignite.cache("myCache");
 
-            System.out.println(">> Hello world sql");
+            System.out.println(">> Hello world SQL");
         }
     }
 

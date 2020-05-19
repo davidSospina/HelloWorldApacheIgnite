@@ -51,9 +51,13 @@ public class IgniteHelloWorld {
 
         // Create an IgniteCache and put some values in it.
         IgniteCache<Integer, String> cache = ignite.getOrCreateCache("myCache");
+        
+        ///////////////// Almacenar Datos
         cache.put(1, "Hello");
         cache.put(2, "World!");
-
+//        cache.put(3, "Prueba 3");
+//        cache.put(4, "Prueba 4");
+        
         System.out.println(">> Created the cache and add the values.");
 
         // Executing custom Java compute task on server nodes.
@@ -61,6 +65,14 @@ public class IgniteHelloWorld {
 
         System.out.println(">> Compute task is executed, check for output on the server nodes.");
 
+        ///////////////////////////////////////////////////////7
+        // Obtener datos nuevamente
+        System.out.println(">> Obtener datos de la base de datos");
+        System.out.println(cache.get(1));
+        System.out.println(cache.get(2));
+//        System.out.println(cache.get(3));
+//        System.out.println(cache.get(4));
+        
         // Disconnect from the cluster.
         ignite.close();
     }
